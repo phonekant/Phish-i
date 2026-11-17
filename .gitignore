@@ -1,3 +1,4 @@
 classifier/data/raw/
 classifier/data/emails.csv
+classifier/data/benchmark.csv
 __pycache__/
