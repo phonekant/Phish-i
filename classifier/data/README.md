@@ -54,7 +54,7 @@ All licenses tell you to give credit to the authors. Put these sources in the re
 |---------|--------|
 | Hugging Face copies (`zefang-liu/phishing-email-dataset`, `cybersectony/PhishingEmailDetectionv2.0`, `puyang2025/*`) | They are copies of the sources above. |
 | Kaggle phishing datasets | They are copies of the sources above. You must also log in to download them. |
-| MeAJOR Corpus (arXiv 2507.17978) | The authors did not publish the data. |
+| [MeAJOR Corpus](https://zenodo.org/records/18471483) | It uses TREC 2005–2007, Nazario and Nigerian Fraud. These sources are already in the training data. |
 
 ## Number of rows
 
@@ -83,8 +83,32 @@ These numbers are from the dataset that we made on November 15, 2026.
 
 **Phishing and spam are different.** Use the `kind` column. To train only on phishing, use the `phishing` rows as the positive class and the `legit` rows as the negative class.
 
-**Most legit emails are old.** Enron, SpamAssassin and TREC are from 2001 to 2007. The classifier can learn that an old email is a legit email. The PhishFuzzer legit emails are newer, but there are not many. Before the benchmark, add some new legit emails, for example newsletters or receipts.
+**Most legit emails are old.** Enron, SpamAssassin and TREC are from 2001 to 2007. The classifier can learn that an old email is a legit email. For a Gmail benchmark, collect recent legitimate messages such as receipts, newsletters and account alerts.
 
 **Some labels can be incorrect.** `phishing_pot` also contains some spam. Some `KSU_AI` emails look like normal invitations, but the authors labeled them as phishing.
 
 **Do not split the rows randomly.** Keep each `group` in one split. Spam campaigns also send many emails that are almost the same. Split by `source` or by date. Keep `Nazario_2025` as a test set.
+
+## Separate test set
+
+From the root folder, download the test set and make `classifier/data/benchmark.csv`:
+
+```bash
+python3 classifier/data/fetch_benchmark.py
+```
+
+The script uses Python and `curl`. It checks the downloaded files against fixed checksums.
+The output has the same columns as `emails.csv`. The `sender` and `subject` fields are empty because the source supplies message text only.
+Keep all of `benchmark.csv` out of training and threshold selection.
+
+| Source | Phishing | Legit |
+|--------|---------:|------:|
+| `Validation_v3_generated` | 977 | 923 |
+| `Validation_v3_original` | 23 | 77 |
+| **Total** | **1,000** | **1,000** |
+
+The generated rows use 52 templates. The `group` field identifies the template.
+The authors report that the 100 original rows come from email and SMS. Give the results for each source separately.
+Measure phishing recall and the false alarm rate on legitimate messages. The balanced test set cannot estimate their frequency in Gmail.
+
+Source credit goes to Radoslav Miltchev, Dimitar Rangelov and Evgeni Genchev (2026), CC BY 4.0. The script changes the column names and normalizes whitespace. [Phishing Validation Emails Dataset v3](https://doi.org/10.5281/zenodo.23954793)
