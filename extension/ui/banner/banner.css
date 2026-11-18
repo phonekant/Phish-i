@@ -1,0 +1,107 @@
+/* Reset styles so host websites don't accidentally mess up your font/sizing */
+#safety-ext-banner {
+  all: initial;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 2147483647; /* Maximum CSS z-index to stay on top */
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  box-sizing: border-box;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+/* Severity State 1: High Risk (Red) */
+#safety-ext-banner.severity-high {
+  background-color: #B71C1C;
+  color: #FFFFFF;
+  border-bottom: 4px solid #7F0000;
+}
+
+/* Severity State 2: Caution / Warning (Amber) */
+#safety-ext-banner.severity-medium {
+  background-color: #FFF8E1;
+  color: #212121;
+  border-bottom: 4px solid #FF8F00;
+}
+
+/* Severity State 3: Safe (Green) */
+#safety-ext-banner.severity-safe {
+  background-color: #1B5E20;
+  color: #FFFFFF;
+  border-bottom: 4px solid #003300;
+}
+
+.safety-ext-content {
+  max-width: 900px;
+}
+
+.safety-ext-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.safety-ext-reasons {
+  margin: 0 0 10px 24px;
+  padding: 0;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.safety-ext-advice {
+  font-size: 16px;
+  font-weight: 600;
+  background: rgba(0, 0, 0, 0.15);
+  padding: 8px 12px;
+  border-radius: 6px;
+  display: inline-block;
+}
+
+/* Adjust advice box background for light amber theme */
+.severity-medium .safety-ext-advice {
+  background: rgba(255, 143, 0, 0.15);
+}
+
+.safety-ext-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 180px;
+}
+
+.safety-ext-btn-primary {
+  background-color: #FFFFFF;
+  color: #B71C1C;
+  border: none;
+  padding: 12px 16px;
+  font-size: 16px;
+  font-weight: 700;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.severity-medium .safety-ext-btn-primary {
+  background-color: #E65100;
+  color: #FFFFFF;
+}
+
+.safety-ext-btn-dismiss {
+  background: transparent;
+  color: inherit;
+  border: 2px solid currentColor;
+  padding: 8px 14px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 6px;
+  cursor: pointer;
+}
