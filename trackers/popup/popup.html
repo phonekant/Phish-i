@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <style>
+    body { font-family: system-ui, sans-serif; width: 320px; padding: 14px; margin: 0; color: #1f2937; }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    h3 { margin: 0; font-size: 16px; }
+    .banner { padding: 10px 12px; border-radius: 8px; font-size: 13px; line-height: 1.4; margin-bottom: 12px; }
+    .banner.low { background: #ecfdf5; border: 1px solid #10b981; color: #065f46; }
+    .banner.medium { background: #fffbeb; border: 1px solid #f59e0b; color: #92400e; }
+    .banner.high { background: #fef2f2; border: 1px solid #ef4444; color: #991b1b; }
+    .toggles { display: flex; flex-direction: column; gap: 6px; padding-bottom: 10px; border-bottom: 1px solid #e5e7eb; margin-bottom: 10px; font-size: 13px; }
+    .toggle-row { display: flex; justify-content: space-between; align-items: center; }
+    ul { list-style: none; padding: 0; margin: 0; max-height: 220px; overflow-y: auto; }
+    li { padding: 8px 0; border-bottom: 1px solid #f3f4f6; }
+    .entity-row { display: flex; justify-content: space-between; font-weight: 600; font-size: 13px; }
+    .badge { font-size: 11px; padding: 2px 6px; border-radius: 4px; background: #e5e7eb; font-weight: 500; }
+    .explanation { font-size: 12px; color: #4b5563; margin-top: 3px; }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h3>Phish-i Tracker Shield</h3>
+  </div>
+
+  <div id="severityBanner" class="banner low">Scanning page...</div>
+
+  <div class="toggles">
+    <label class="toggle-row">
+      <span>Block Third-Party Trackers</span>
+      <input type="checkbox" id="toggleGlobal" checked />
+    </label>
+    <label class="toggle-row">
+      <span id="siteLabel">Pause on this site</span>
+      <input type="checkbox" id="toggleSite" />
+    </label>
+  </div>
+
+  <ul id="trackerList"></ul>
+  <script src="popup.js"></script>
+</body>
+</html>
