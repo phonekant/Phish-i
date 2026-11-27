@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Phish-i Safety Assistant</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="app-header">
+    <div class="brand">
+      <span class="shield-icon">🛡️</span>
+      <h1>Phish-i Safety Report</h1>
+    </div>
+  </header>
+
+  <!-- security repirt -->
+  <main class="report-container">
+    <!-- score out of 100 -->
+    <div class="site-banner status-safe" id="site-status-box">
+      <div class="score-circle">
+        <span id="privacy-score">88</span>
+        <small>/ 100</small>
+      </div>
+      <div class="status-text">
+        <h2 id="status-heading">This Website Looks Safe</h2>
+        <p id="current-domain">amazon.com</p>
+      </div>
+    </div>
+
+    <!-- off/brand fake store warning -->
+    <section id="redirect-card" class="redirect-card hidden">
+      <h3>⚠️ Possible Fake Shopping Site</h3>
+      <p>Did you mean to visit the official store instead?</p>
+      <a id="official-site-link" href="#" target="_blank" class="redirect-btn">
+        Go to Official Website →
+      </a>
+    </section>
+
+    <section class="info-card">
+      <h3>🔒 Website Security </h3>
+      <p id="cert-plain-text">
+        <strong>Verified Store:</strong> This site has a valid safety certificate issued to Amazon.com, Inc. It has been active for over 20 years.
+      </p>
+    </section>
+
+    <section class="info-card">
+      <h3>🔍 AI Safety & Privacy Check</h3>
+      <ul id="summary-bullets" class="plain-list">
+        <li>✅ No phishing or scam patterns detected on this page.</li>
+        <li>🛡️ <strong>3 advertising trackers</strong> were detected.</li>
+      </ul>
+    </section>
+
+    <!-- action button -->
+    <button id="scan-again-btn" class="primary-btn">Re-Scan This Page</button>
+    <p id="scan-status" class="scan-status hidden" role="status"></p>
+  </main>
+
+  <script src="popup.js"></script>
+</body>
+</html>
