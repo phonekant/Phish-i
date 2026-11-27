@@ -1,0 +1,32 @@
+{
+  "manifest_version": 3,
+  "name": "Phish-i",
+  "version": "0.1.0",
+  "description": "Warns you about phishing emails, lookalike websites, and third-party trackers.",
+  "permissions": ["identity", "storage"],
+  "host_permissions": [
+    "https://mail.google.com/*",
+    "https://gmail.googleapis.com/*"
+  ],
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://mail.google.com/*"],
+      "js": ["src/content/gmail-content.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "src/popup/popup.html",
+    "default_title": "Phish-i"
+  },
+  "oauth2": {
+    "client_id": "853523200345-teil1h9nfiuoavkaesg10g5sf729t6u0.apps.googleusercontent.com",
+    "scopes": ["https://www.googleapis.com/auth/gmail.readonly"]
+  },
+  "key":"MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAyXAI/yykve6BO7gHum6VubvJpH1JlsGu+MYhmhFUyD+qXGO6yoKRPW+pIft2mQAcQWlBfPlxC4LmSyQkEeiS1NnqkXnKMcNl12TmPGswj4fFRGLo8k6rtsWSaEQLE98MghyiJ6jI9ATJ/IqsG4v7MJCS7+fc0plXanWMA/o9hnJV1F/ujrlQBBQS4WrjbQgJnEvZbXbgYovsBkiEi3xKWP77folMzPBU5lc3mLk+x5yMKob1G/ruPb3TdRHDZPf/ZtrG+no+hu8qUE+ayL5WoNq/7Vqp5UGndRWKIYBcB8mizcCvqliWTrzivQIeqqUUpcL1ggYlRNS7QJ6fG2ZT7wIDAQAB"
+
+}
